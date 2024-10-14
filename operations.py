@@ -40,6 +40,21 @@ def transpose_matrix(a: np.array) -> np.array:
         for i in range(a.shape[0]):
             rez[j][i] = a[i][j]
     return rez
+
+def determinant(a: np.array) -> np.array:
+    # base case for matrix 1x1
+    if len(a) == 1:
+        return a[0][0]
     
+    # base case for matrix 2x2
+    if len(a) == 2:
+        return a[0][0] * a[1][1] - a[0][1] * a[1][0]
+    
+    det = 0
+    for col in range(len(a)):
+        submatrix = np.delete(np.delete(a, 0, axis=0), col, axis=1)  
+        cofactor = ((-1) ** col) * a[0][col] * determinant(submatrix)
+        det += cofactor
+    return det
 
     

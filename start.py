@@ -1,7 +1,7 @@
 import numpy as np
 import ast
 from error import matrixDimensionsError
-from operations import add_matrices, subtract_matrices, multiply_matrices, scalar_multiplication, transpose_matrix
+from operations import add_matrices, subtract_matrices, multiply_matrices, scalar_multiplication, transpose_matrix, determinant
 from print_color import print
 
 def one_matrix():
@@ -30,6 +30,7 @@ def start():
         3: "Multiplication",
         4: "Scalar Multiplciation",
         5: "Transpose",
+        6 : "Determinant",
     }
     print("Hello, what kind of operation do you need?")
     for key, value in operations.items():
@@ -64,6 +65,11 @@ def start():
     elif operation_num == 5:
         matrix = one_matrix()
         result = transpose_matrix(matrix)
+        print("The result is: \n")
+        print(result, color="green")
+    elif operation_num == 6:
+        matrix = one_matrix()
+        result = determinant(matrix)
         print("The result is: \n")
         print(result, color="green")
         
