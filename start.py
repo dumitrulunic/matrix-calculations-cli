@@ -1,7 +1,7 @@
 import numpy as np
 import ast
 from error import matrixDimensionsError
-from operations import add_matrices, subtract_matrices, multiply_matrices, scalar_multiplication, transpose_matrix, determinant
+from operations import add_matrices, subtract_matrices, multiply_matrices, scalar_multiplication, transpose_matrix, determinant, inverse
 from print_color import print
 
 def one_matrix():
@@ -25,17 +25,23 @@ def two_matrices():
 
 def start():
     operations = {
+        0: "Exit",
         1: "Addition",
         2: "Substraction",
         3: "Multiplication",
         4: "Scalar Multiplciation",
         5: "Transpose",
-        6 : "Determinant",
+        6: "Determinant",
+        7: "Inverse",
+        
     }
     print("Hello, what kind of operation do you need?")
     for key, value in operations.items():
         print(f"{key}: {value}")
     operation_num = int(input("Enter your choice: "))
+    
+    if operation_num == 0:
+        print("Goodbye!", color="green")
     
     if operation_num == 1:
         matrix_1, matrix_2 = two_matrices()
@@ -62,14 +68,22 @@ def start():
         result = scalar_multiplication(matrix, scalar)
         print("The result is: \n")
         print(result, color="green")
+        
     elif operation_num == 5:
         matrix = one_matrix()
         result = transpose_matrix(matrix)
         print("The result is: \n")
         print(result, color="green")
+        
     elif operation_num == 6:
         matrix = one_matrix()
         result = determinant(matrix)
+        print("The result is: \n")
+        print(result, color="green")
+        
+    elif operation_num == 7:
+        matrix = one_matrix()
+        result = inverse(matrix)
         print("The result is: \n")
         print(result, color="green")
         

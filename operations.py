@@ -57,4 +57,20 @@ def determinant(a: np.array) -> np.array:
         det += cofactor
     return det
 
+
+def inverse(a: np.array) -> np.array:
+    if a.shape[0] != a.shape[1]:
+        raise ValueError("Matrix is not square")
     
+    det_a = determinant(a)
+    
+    if det_a == 0:
+        raise ValueError("Matrix is not invertible")
+    rez = Matrix(r=a.shape[0], c=a.shape[1])
+    
+    for i in range(a.shape[0]):
+        for j in range(a.shape[1]):
+            submatrix = np.delete(np.delete(a, i, axis=0), j, axis=1)
+            cofactor = ((-1) ** (i + j)) * determinant(submatrix)
+            rez[j, i] = cofactor
+    return rez / det_a
